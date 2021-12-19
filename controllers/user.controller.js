@@ -1,5 +1,6 @@
 const User = require("../models/User")
 
+/*************************** Add user *********************/
 
 exports.addUser=async(req,res)=>{
 
@@ -16,3 +17,18 @@ exports.addUser=async(req,res)=>{
     }
 
 };
+
+
+
+/*************************** Get all user *********************/
+
+exports.getUsers = async (req, res) => {
+    const Users = await User.find();
+  
+    try {
+      res.status(202).json({ Users });
+    } catch (error) {
+      console.log("get users failed", error);
+      res.status(402).json({ msg: "Fetch users failed" });
+    }
+  };
